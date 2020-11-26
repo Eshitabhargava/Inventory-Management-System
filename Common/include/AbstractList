@@ -1,0 +1,19 @@
+#ifndef __AbstractList
+#define __AbstractList
+
+#include<iostream>
+
+using namespace std;
+
+namespace collections
+{
+template<class T>
+class AbstractList
+{
+public:
+virtual T get(int)=0;
+virtual int getSize()=0;
+};
+}
+
+#endif

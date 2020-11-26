@@ -1,0 +1,41 @@
+#ifndef __List
+#define __List 
+#include<set>
+#include<iostream>
+#include<IndexOutOfBoundsException>
+#include<AbstractList>
+
+using namespace std;
+using namespace exceptions;
+
+namespace collections
+{
+template<class T>
+class List
+{
+AbstractList<T> *list;
+public:
+List(AbstractList<T> *list);
+T get(int);
+int getSize();
+};
+
+template<class T>
+List<T>::List(AbstractList<T> *list)
+{
+this->list=list;
+}
+
+template<class T>
+T List<T>::get(int i)
+{
+return this->list->get(i);
+}
+
+template<class T>
+int List<T>::getSize()
+{
+return this->list->getSize();
+}
+}
+#endif

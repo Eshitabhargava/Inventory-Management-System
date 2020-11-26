@@ -1,0 +1,64 @@
+#ifndef __ListImplementation
+#define __ListImplementation
+
+#include<iostream>
+#include<IndexOutOfBoundsException>
+#include<AbstractList>
+#include<set>
+#include<utility>
+
+using namespace std;
+using namespace exceptions;
+
+namespace collections
+{
+template<class T1,class T2,class T3>
+class ListImplementation:public AbstractList<T2>
+{
+private:
+set<T1*,T3> *dataList;
+typename set<T1*,T3>::iterator iter;
+int currentRecordIndex;
+int size;
+public:
+ListImplementation(set<T1*,T3> *dataList);
+T2 get(int);
+int getSize();
+};
+
+template<class T1,class T2,class T3>
+ListImplementation<T1,T2,T3>::ListImplementation(set<T1*,T3> *dataList)
+{
+this->dataList=dataList;
+this->size=dataList->size();
+this->currentRecordIndex=-1;
+if(this->size>0)
+{
+this->iter=dataList->begin();
+this->currentRecordIndex=0;
+}
+}
+
+template<class T1,class T2,class T3>
+T2 ListImplementation<T1,T2,T3>::get(int i)
+{
+if(i<0 || i>=this->size)
+{
+char msg[51];
+sprintf(msg,"%d is not a valid index",i);
+throw IndexOutOfBoundsException(string(msg));
+}
+int steps;
+steps=i-currentRecordIndex;
+if(steps!=0) advance(this->iter,steps);
+this->currentRecordIndex=i;
+return *((T2 *)(*(this->iter)));
+}
+
+template<class T1,class T2,class T3>
+int ListImplementation<T1,T2,T3>::getSize()
+{
+return this->size;
+}
+}
+#endif

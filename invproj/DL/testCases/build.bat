@@ -1,0 +1,1 @@
+g++ -std=c++11 -static %1 -I ..\..\..\common\include -I ..\..\..\fhlib\include -I ..\include -l inventorydl -L ..\lib -l common -L ..\..\..\common\lib -l fh -L ..\..\..\fhlib\lib -o %2
